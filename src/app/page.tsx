@@ -1,65 +1,109 @@
-import Image from "next/image";
+import Link from 'next/link'
+import { schedule } from '@/lib/data'
+import ClassCard from '@/components/ClassCard'
+
+function getTodaySchedule() {
+  const dayIndex = new Date().getDay() // 0 = Sunday
+  // Map JS day index to Swedish day names
+  const dayMap: Record<number, string> = {
+    0: 'Måndag', // Sunday → show Monday
+    1: 'Måndag',
+    2: 'Tisdag',
+    3: 'Onsdag',
+    4: 'Torsdag',
+    5: 'Fredag',
+    6: 'Lördag',
+  }
+  const todayName = dayMap[dayIndex]
+  return schedule.find((d) => d.day === todayName) ?? schedule[0]
+}
+
+const quickLinks = [
+  {
+    label: 'Schema',
+    description: 'Veckans klasser och tider',
+    href: '/schema',
+  },
+  {
+    label: 'Länkar, anmälan & events',
+    description: 'Anmäl dig och bli medlem',
+    href: '/lankar',
+  },
+  {
+    label: 'Hitta hit',
+    description: 'Adress, öppettider och kontakt',
+    href: '/info',
+  },
+]
 
 export default function Home() {
+  const todaySchedule = getTodaySchedule()
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+    <div className="max-w-5xl mx-auto px-4 py-12">
+      {/* Hero */}
+      <section className="text-center mb-16">
+        <h1 className="font-[family-name:var(--font-oswald)] text-6xl md:text-8xl font-bold text-white tracking-widest mb-3">
+          PARKOURHALL1
+        </h1>
+        <p className="text-[#C7B39A] text-xl md:text-2xl font-semibold mb-3">
+          Quality Movement | Järfälla
+        </p>
+        <p className="text-gray-400 text-lg mb-8">
+          Parkour, akrobatik och World Chase Tag för alla åldrar
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link
+            href="/schema"
+            className="inline-block bg-[#C7B39A] hover:bg-[#b09a82] text-white font-semibold px-8 py-3 rounded-xl transition-colors"
+          >
+            Se Schema
+          </Link>
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://qualitymovement.se/parkourhall1-gymmedlemskap-2/"
             target="_blank"
             rel="noopener noreferrer"
+            className="inline-block border border-[#C7B39A] text-[#C7B39A] hover:bg-[#b09a82] hover:text-white font-semibold px-8 py-3 rounded-xl transition-colors"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
+            Bli Medlem
           </a>
         </div>
-      </main>
+      </section>
+
+      {/* Quick links */}
+      <section className="mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {quickLinks.map((ql) => (
+            <Link
+              key={ql.href}
+              href={ql.href}
+              className="bg-[#0d1420] border border-[#1f1f1f] rounded-xl p-6 hover:border-[#C7B39A] transition-colors group"
+            >
+              <h2 className="font-[family-name:var(--font-oswald)] text-xl font-semibold text-white mb-1 group-hover:text-[#C7B39A] transition-colors">
+                {ql.label}
+              </h2>
+              <p className="text-sm text-gray-400">{ql.description}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Today's classes */}
+      <section>
+        <h2 className="font-[family-name:var(--font-oswald)] text-3xl font-semibold text-white mb-6">
+          Dagens klasser –{' '}
+          <span className="text-[#C7B39A]">{todaySchedule.day}</span>
+        </h2>
+        {todaySchedule.classes.length === 0 ? (
+          <p className="text-gray-400 text-center py-8">Inga klasser idag.</p>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {todaySchedule.classes.map((cls, i) => (
+              <ClassCard key={i} entry={cls} />
+            ))}
+          </div>
+        )}
+      </section>
     </div>
-  );
+  )
 }
