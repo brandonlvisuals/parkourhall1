@@ -41,8 +41,7 @@ export const schedule: DaySchedule[] = [
       { time: '16:00–17:00', name: 'Parkour 6–8år', instructor: 'Mattias H', level: 'Nybörjare' },
       { time: '17:10–18:10', name: 'Parkour 9–12år Nybörjare', instructor: 'Mattias H', level: 'Nybörjare' },
       { time: '18:20–19:20', name: 'Parkour 9–12år Fortsättning', instructor: 'Mattias H', level: 'Fortsättning' },
-      { time: '18:30–20:00', name: 'Parkour: Alla Nivåer – Nacka (utomhus)', instructor: 'Brandon Sandén', level: 'Alla nivåer', location: 'Utomhus, Nacka' },
-      { time: '19:30–20:30', name: 'Parkour 9–12år Avancerad', instructor: 'Mattias H', level: 'Avancerad' },
+{ time: '19:30–20:30', name: 'Parkour 9–12år Avancerad', instructor: 'Mattias H', level: 'Avancerad' },
     ],
   },
   {
