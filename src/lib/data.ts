@@ -103,13 +103,13 @@ export const links = [
   {
     label: 'Events',
     description: 'Kommande events och tävlingar',
-    href: 'https://qualitymovement.se',
+    href: 'https://qualitymovement.se/kursanmalan-2/#events',
     icon: '🎯',
   },
   {
     label: 'Om oss / Kontakt',
     description: 'Läs mer om Quality Movement',
-    href: 'https://qualitymovement.se',
+    href: 'https://qualitymovement.se/parkourhall1/',
     icon: '💬',
   },
 ];
