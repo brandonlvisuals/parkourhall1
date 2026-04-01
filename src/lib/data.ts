@@ -61,7 +61,6 @@ export const schedule: DaySchedule[] = [
   {
     day: 'Torsdag',
     classes: [
-      { time: '16:00–17:00', name: 'Parkour 9–12år Nybörjare', instructor: 'Viktor A', level: 'Nybörjare', url: U.p912n },
       { time: '17:10–18:10', name: 'Parkour 9–12år Fortsättning', instructor: 'Viktor A', level: 'Fortsättning', url: U.p912f },
       { time: '18:30–19:30', name: 'World Chase Tag 9–17år Tävlingsgrupp', instructor: 'Viktor A', level: 'Avancerad', url: U.wct },
     ],
