@@ -22,27 +22,47 @@ interface ClassCardProps {
 }
 
 export default function ClassCard({ entry }: ClassCardProps) {
+  const inner = (
+    <div className="flex items-start justify-between gap-3 flex-wrap">
+      <div className="flex-1 min-w-0">
+        <p className="text-[#C7B39A] font-bold text-sm mb-1">{entry.time}</p>
+        <h3 className="font-[family-name:var(--font-oswald)] text-lg font-semibold text-white leading-tight mb-1">
+          {entry.name}
+        </h3>
+        <p className="text-sm text-gray-400">{entry.instructor}</p>
+        {entry.location && (
+          <span className="inline-block mt-2 text-xs px-2 py-0.5 rounded-full bg-[#C7B39A]/20 text-[#C7B39A] border border-[#C7B39A]/30">
+            {entry.location}
+          </span>
+        )}
+      </div>
+      <div className="flex-shrink-0 flex flex-col items-end gap-2">
+        <span className={`inline-block text-xs px-2.5 py-1 rounded-full font-semibold ${levelBadge(entry.level)}`}>
+          {entry.level}
+        </span>
+        {entry.url && (
+          <span className="text-xs text-[#C7B39A] opacity-70">Anmäl →</span>
+        )}
+      </div>
+    </div>
+  )
+
+  if (entry.url) {
+    return (
+      <a
+        href={entry.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block bg-[#0d1420] border border-[#1f1f1f] rounded-xl p-4 hover:border-[#C7B39A] transition-colors duration-200"
+      >
+        {inner}
+      </a>
+    )
+  }
+
   return (
     <div className="bg-[#0d1420] border border-[#1f1f1f] rounded-xl p-4 hover:border-[#C7B39A] transition-colors duration-200">
-      <div className="flex items-start justify-between gap-3 flex-wrap">
-        <div className="flex-1 min-w-0">
-          <p className="text-[#C7B39A] font-bold text-sm mb-1">{entry.time}</p>
-          <h3 className="font-[family-name:var(--font-oswald)] text-lg font-semibold text-white leading-tight mb-1">
-            {entry.name}
-          </h3>
-          <p className="text-sm text-gray-400">{entry.instructor}</p>
-          {entry.location && (
-            <span className="inline-block mt-2 text-xs px-2 py-0.5 rounded-full bg-[#C7B39A]/20 text-[#C7B39A] border border-[#C7B39A]/30">
-              {entry.location}
-            </span>
-          )}
-        </div>
-        <div className="flex-shrink-0">
-          <span className={`inline-block text-xs px-2.5 py-1 rounded-full font-semibold ${levelBadge(entry.level)}`}>
-            {entry.level}
-          </span>
-        </div>
-      </div>
+      {inner}
     </div>
   )
 }

@@ -6,6 +6,7 @@ export interface ClassEntry {
   instructor: string;
   level: Level;
   location?: string; // only if not Parkourhall1
+  url?: string;      // link to course page
 }
 
 export interface DaySchedule {
@@ -13,59 +14,72 @@ export interface DaySchedule {
   classes: ClassEntry[];
 }
 
+const U = {
+  p68:   'https://qualitymovement.se/parkour-for-barn-6-8ar-i-parkourhall1-2/',
+  p912n: 'https://qualitymovement.se/parkour-for-barn-9-12ar-i-parkourhall1-nyborjare/',
+  p912f: 'https://qualitymovement.se/parkour-for-barn-9-12ar-fortsattning-i-parkourhall1/',
+  p912a: 'https://qualitymovement.se/parkour-for-barn-9-12ar-avancerad-i-parkourhall1/',
+  pton:  'https://qualitymovement.se/parkour-for-tonaringar-i-parkourhall1/',
+  ptonf: 'https://qualitymovement.se/parkour-for-tonaringar-fortsattningsgrupp-i-parkourhall1/',
+  wct:   'https://qualitymovement.se/world-chase-tag-i-sverige/',
+  akro:  'https://qualitymovement.se/akrobatik-for-9-12-ar-i-parkourhall1/',
+  p18:   'https://qualitymovement.se/parkour-for-vuxna-i-parkourhall1/',
+  p55:   'https://qualitymovement.se/parkour-for-seniorer-i-parkourhall1/',
+};
+
 export const schedule: DaySchedule[] = [
   {
     day: 'Måndag',
     classes: [
-      { time: '16:00–17:00', name: 'Parkour 6–8år', instructor: 'Piam A', level: 'Nybörjare' },
-      { time: '16:00–17:00', name: 'World Chase Tag 9–12år', instructor: 'Mattias H', level: 'Nybörjare' },
-      { time: '17:10–18:10', name: 'Parkour Tonårs', instructor: 'Piam A', level: 'Nybörjare' },
-      { time: '17:10–18:10', name: 'World Chase Tag 13–17år', instructor: 'Mattias H', level: 'Nybörjare' },
-      { time: '18:20–19:20', name: 'Parkour 9–12år Fortsättning', instructor: 'Piam A', level: 'Fortsättning' },
-      { time: '18:20–19:20', name: 'World Chase Tag 9–17år Fortsättning', instructor: 'Mattias H', level: 'Fortsättning' },
+      { time: '16:00–17:00', name: 'Parkour 6–8år', instructor: 'Piam A', level: 'Nybörjare', url: U.p68 },
+      { time: '16:00–17:00', name: 'World Chase Tag 9–12år', instructor: 'Mattias H', level: 'Nybörjare', url: U.wct },
+      { time: '17:10–18:10', name: 'Parkour Tonårs', instructor: 'Piam A', level: 'Nybörjare', url: U.pton },
+      { time: '17:10–18:10', name: 'World Chase Tag 13–17år', instructor: 'Mattias H', level: 'Nybörjare', url: U.wct },
+      { time: '18:20–19:20', name: 'Parkour 9–12år Fortsättning', instructor: 'Piam A', level: 'Fortsättning', url: U.p912f },
+      { time: '18:20–19:20', name: 'World Chase Tag 9–17år Fortsättning', instructor: 'Mattias H', level: 'Fortsättning', url: U.wct },
     ],
   },
   {
     day: 'Tisdag',
     classes: [
-      { time: '15:00–16:00', name: 'Parkour Senior (55+)', instructor: 'Brandon S', level: 'Alla nivåer' },
-      { time: '16:00–17:00', name: 'Akrobatik 9–12år', instructor: 'Brandon S', level: 'Nybörjare' },
-      { time: '17:10–18:10', name: 'Parkour 9–12år Fortsättning', instructor: 'Brandon S', level: 'Fortsättning' },
-      { time: '18:20–19:20', name: 'Parkour 9–12år Avancerad', instructor: 'Brandon S', level: 'Avancerad' },
-      { time: '19:30–20:30', name: 'Parkour 18år+', instructor: 'Brandon S', level: 'Alla nivåer' },
+      { time: '15:00–16:00', name: 'Parkour Senior (55+)', instructor: 'Brandon S', level: 'Alla nivåer', url: U.p55 },
+      { time: '16:00–17:00', name: 'Akrobatik 9–12år', instructor: 'Brandon S', level: 'Nybörjare', url: U.akro },
+      { time: '17:10–18:10', name: 'Parkour 9–12år Fortsättning', instructor: 'Brandon S', level: 'Fortsättning', url: U.p912f },
+      { time: '18:20–19:20', name: 'Parkour 9–12år Avancerad', instructor: 'Brandon S', level: 'Avancerad', url: U.p912a },
+      { time: '19:30–20:30', name: 'Parkour 18år+', instructor: 'Brandon S', level: 'Alla nivåer', url: U.p18 },
     ],
   },
   {
     day: 'Onsdag',
     classes: [
-      { time: '16:00–17:00', name: 'Parkour 6–8år', instructor: 'Mattias H', level: 'Nybörjare' },
-      { time: '17:10–18:10', name: 'Parkour 9–12år Nybörjare', instructor: 'Mattias H', level: 'Nybörjare' },
-      { time: '18:20–19:20', name: 'Parkour 9–12år Fortsättning', instructor: 'Mattias H', level: 'Fortsättning' },
-{ time: '19:30–20:30', name: 'Parkour 9–12år Avancerad', instructor: 'Mattias H', level: 'Avancerad' },
+      { time: '16:00–17:00', name: 'Parkour 6–8år', instructor: 'Mattias H', level: 'Nybörjare', url: U.p68 },
+      { time: '17:10–18:10', name: 'Parkour 9–12år Nybörjare', instructor: 'Mattias H', level: 'Nybörjare', url: U.p912n },
+      { time: '18:20–19:20', name: 'Parkour 9–12år Fortsättning', instructor: 'Mattias H', level: 'Fortsättning', url: U.p912f },
+      { time: '19:30–20:30', name: 'Parkour 9–12år Avancerad', instructor: 'Mattias H', level: 'Avancerad', url: U.p912a },
     ],
   },
   {
     day: 'Torsdag',
     classes: [
-      { time: '16:00–17:00', name: 'Parkour 9–12år Nybörjare', instructor: 'Viktor A', level: 'Nybörjare' },
-      { time: '17:10–18:10', name: 'Parkour 9–12år Fortsättning', instructor: 'Viktor A', level: 'Fortsättning' },
-      { time: '18:30–19:30', name: 'World Chase Tag 9–17år Tävlingsgrupp', instructor: 'Viktor A', level: 'Avancerad' },
+      { time: '16:00–17:00', name: 'Parkour 9–12år Nybörjare', instructor: 'Viktor A', level: 'Nybörjare', url: U.p912n },
+      { time: '17:10–18:10', name: 'Parkour 9–12år Fortsättning', instructor: 'Viktor A', level: 'Fortsättning', url: U.p912f },
+      { time: '18:30–19:30', name: 'World Chase Tag 9–17år Tävlingsgrupp', instructor: 'Viktor A', level: 'Avancerad', url: U.wct },
     ],
   },
   {
     day: 'Fredag',
     classes: [
-      { time: '16:00–17:00', name: 'Parkour 9–12år Nybörjare', instructor: 'Alfred L', level: 'Nybörjare' },
-      { time: '17:10–18:10', name: 'Parkour 6–8år', instructor: 'Alfred L', level: 'Nybörjare' },
-      { time: '18:20–19:20', name: 'Parkour 9–12år Avancerad', instructor: 'Alfred L', level: 'Avancerad' },
-      { time: '19:30–20:30', name: 'Parkour Tonårs Fortsättning', instructor: 'Alfred L', level: 'Fortsättning' },
+      { time: '16:00–17:00', name: 'Parkour 9–12år Nybörjare', instructor: 'Alfred L', level: 'Nybörjare', url: U.p912n },
+      { time: '17:10–18:10', name: 'Parkour 6–8år', instructor: 'Alfred L', level: 'Nybörjare', url: U.p68 },
+      { time: '18:20–19:20', name: 'Parkour 9–12år Avancerad', instructor: 'Alfred L', level: 'Avancerad', url: U.p912a },
+      { time: '19:30–20:30', name: 'Parkour Tonårs Fortsättning', instructor: 'Alfred L', level: 'Fortsättning', url: U.ptonf },
     ],
   },
   {
     day: 'Lördag',
     classes: [
-      { time: '12:20–13:20', name: 'Parkour 9–12år Nybörjare', instructor: 'Melwin H', level: 'Nybörjare' },
-      { time: '13:30–14:30', name: 'Parkour 6–8år Nybörjare', instructor: 'Melwin H', level: 'Nybörjare' },
+      { time: '12:20–13:20', name: 'Parkour 9–12år Nybörjare', instructor: 'Melwin H', level: 'Nybörjare', url: U.p912n },
+      { time: '13:30–14:30', name: 'Parkour 6–8år Nybörjare', instructor: 'Melwin H', level: 'Nybörjare', url: U.p68 },
     ],
   },
   {

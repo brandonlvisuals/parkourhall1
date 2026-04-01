@@ -3,10 +3,9 @@ import { schedule } from '@/lib/data'
 import ClassCard from '@/components/ClassCard'
 
 function getTodaySchedule() {
-  const dayIndex = new Date().getDay() // 0 = Sunday
-  // Map JS day index to Swedish day names
+  const dayIndex = new Date().getDay()
   const dayMap: Record<number, string> = {
-    0: 'Måndag', // Sunday → show Monday
+    0: 'Måndag',
     1: 'Måndag',
     2: 'Tisdag',
     3: 'Onsdag',
@@ -16,6 +15,13 @@ function getTodaySchedule() {
   }
   const todayName = dayMap[dayIndex]
   return schedule.find((d) => d.day === todayName) ?? schedule[0]
+}
+
+function getTodayHours() {
+  const dayIndex = new Date().getDay()
+  if (dayIndex === 0) return { label: 'Söndag', hours: 'Stängt', open: false }
+  if (dayIndex === 6) return { label: 'Lördag', hours: '12:00–18:00', open: true }
+  return { label: 'Idag', hours: '15:00–21:00', open: true }
 }
 
 const quickLinks = [
@@ -38,12 +44,13 @@ const quickLinks = [
 
 export default function Home() {
   const todaySchedule = getTodaySchedule()
+  const todayHours = getTodayHours()
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">
       {/* Hero */}
       <section className="text-center mb-16">
-        <h1 className="font-[family-name:var(--font-oswald)] text-6xl md:text-8xl font-bold text-white tracking-widest mb-3">
+        <h1 className="font-[family-name:var(--font-oswald)] text-4xl sm:text-6xl md:text-8xl font-bold text-white tracking-widest mb-3">
           PARKOURHALL1
         </h1>
         <p className="text-[#C7B39A] text-xl md:text-2xl font-semibold mb-3">
@@ -103,6 +110,21 @@ export default function Home() {
             ))}
           </div>
         )}
+      </section>
+
+      {/* Today's opening hours */}
+      <section className="mt-8">
+        <div className="bg-[#0d1420] border border-[#1f1f1f] rounded-xl p-5 flex items-center justify-between">
+          <div>
+            <p className="text-sm text-gray-400 mb-1">Öppettider idag</p>
+            <p className="font-[family-name:var(--font-oswald)] text-xl font-semibold text-white">
+              {todayHours.hours}
+            </p>
+          </div>
+          <span className={`text-sm font-semibold px-3 py-1 rounded-full ${todayHours.open ? 'bg-green-800 text-green-300' : 'bg-red-900 text-red-300'}`}>
+            {todayHours.open ? 'Öppet' : 'Stängt'}
+          </span>
+        </div>
       </section>
     </div>
   )
