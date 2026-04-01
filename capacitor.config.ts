@@ -5,7 +5,7 @@ const config: CapacitorConfig = {
   appName: 'Parkourhall1',
   webDir: 'out',
   ios: {
-    contentInset: 'always'
+    contentInset: 'never'
   }
 };
 
