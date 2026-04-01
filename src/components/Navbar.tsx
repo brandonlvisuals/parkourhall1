@@ -17,7 +17,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <nav className="sticky top-0 z-50 bg-[#3d5568] border-b border-[#1f1f1f]">
+    <nav className="sticky top-0 z-50 bg-[#3d5568] border-b border-[#1f1f1f]" style={{ paddingTop: 'env(safe-area-inset-top)' }}>
       <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
         <Link href="/">
           <Image

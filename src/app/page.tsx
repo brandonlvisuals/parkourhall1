@@ -114,7 +114,7 @@ export default function Home() {
 
       {/* Today's opening hours */}
       <section className="mt-8">
-        <div className="bg-[#0d1420] border border-[#1f1f1f] rounded-xl p-5 flex items-center justify-between">
+        <Link href="/info" className="block bg-[#0d1420] border border-[#1f1f1f] rounded-xl p-5 flex items-center justify-between hover:border-[#C7B39A] transition-colors">
           <div>
             <p className="text-sm text-gray-400 mb-1">Öppettider idag</p>
             <p className="font-[family-name:var(--font-oswald)] text-xl font-semibold text-white">
@@ -124,8 +124,9 @@ export default function Home() {
           <span className={`text-sm font-semibold px-3 py-1 rounded-full ${todayHours.open ? 'bg-green-800 text-green-300' : 'bg-red-900 text-red-300'}`}>
             {todayHours.open ? 'Öppet' : 'Stängt'}
           </span>
-        </div>
+        </Link>
       </section>
+
     </div>
   )
 }

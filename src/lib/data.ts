@@ -127,6 +127,62 @@ export const links = [
   },
 ];
 
+// Last class date per weekday (YYYY-MM-DD) – after this date, no more classes this term
+export const termEndDates: Record<string, string> = {
+  'Måndag':  '2026-05-18',
+  'Tisdag':  '2026-05-19',
+  'Onsdag':  '2026-05-20',
+  'Torsdag': '2026-05-28',
+  'Fredag':  '2026-06-05',
+  'Lördag':  '2026-05-30',
+};
+
+export interface ClosedDay {
+  date: string; // "YYYY-MM-DD"
+  name: string;
+  note?: string;
+}
+
+export const closedDays: ClosedDay[] = [
+  { date: '2026-04-03', name: 'Långfredagen' },
+  { date: '2026-04-04', name: 'Klämmdag', note: 'Ej röd dag men stängt i hallen' },
+  { date: '2026-04-05', name: 'Påskdagen' },
+  { date: '2026-04-06', name: 'Annandag påsk' },
+  { date: '2026-05-01', name: 'Första maj' },
+  { date: '2026-05-14', name: 'Kristi himmelfärdsdag' },
+  { date: '2026-06-06', name: 'Sveriges nationaldag' },
+  { date: '2026-06-20', name: 'Midsommardagen' },
+];
+
+export interface WeekEventItem {
+  title: string;
+  description?: string;
+  url?: string;
+  noRegularClasses?: boolean; // true = inga ordinarie klasser denna vecka
+}
+
+export interface WeekEvents {
+  week: number;
+  year: number;
+  events: WeekEventItem[];
+}
+
+// Lägg till events här – vecka och år som nyckel
+export const weekEvents: WeekEvents[] = [
+  {
+    week: 15,
+    year: 2026,
+    events: [
+      {
+        title: 'Påsklovsläger',
+        description: 'Parkourläger under påsklovet – kul för alla nivåer!',
+        url: 'https://qualitymovement.se/parkourlager-pasklov-i-parkourhall1/',
+        noRegularClasses: true,
+      },
+    ],
+  },
+];
+
 // Lägg till bildfilnamn här när du lägger bilder i public/gallery/
 // Exempel: 'bild1.jpg', 'bild2.jpg'
 export const galleryImages: string[] = [

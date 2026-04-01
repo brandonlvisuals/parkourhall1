@@ -1,4 +1,5 @@
 import { links } from '@/lib/data'
+import WeeklyEvents from '@/components/WeeklyEvents'
 
 export default function LankarPage() {
   return (
@@ -32,6 +33,8 @@ export default function LankarPage() {
           </a>
         ))}
       </div>
+
+      <WeeklyEvents />
     </div>
   )
 }
